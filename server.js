@@ -74,8 +74,8 @@ const bootstrapServer = async () => {
           // Invalid input, handle the error
           return res.status(400).send('Invalid filename');
 
-    }
       }
+    
       const command = `cat ${input}`;
 
       exec(command, (error, stdout, stderr) => {
