@@ -68,11 +68,13 @@ const bootstrapServer = async () => {
     if(req.query.file != undefined)
     {
       //here filteration
-      if (input.includes('&') || input.includes(';') || input.includes('-') || input.includes('`') ||
-      input.includes('||') || input.includes('|')) {
-      // Handle invalid input
-      return res.status(400).send('Invalid input');
-      
+      const validFilenamePattern = /^[a-zA-Z0-9_-]+.txt$/;
+
+      if (!validFilenamePattern.test(input)) {
+          // Invalid input, handle the error
+          return res.status(400).send('Invalid filename');
+
+    }
       }
       const command = `cat ${input}`;
 
