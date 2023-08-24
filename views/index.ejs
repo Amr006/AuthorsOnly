@@ -1,36 +1,278 @@
-<!DOCTYPE html>
-<html lang="en">
- <%- include("./partials/head.ejs") %>
-<body>
- 
-    <%- include("./partials/headers.ejs") %>
-<div class="container">
-<% for (let i = 0; i < weeks; i++) {%>
-<nav class="drop">
-      <input id="toggle" type="checkbox" checked>
-     <h2>Week<%=i+1%></h2>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>The Book Store</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
+<style>/* CSS Document by Dieter Schneider 2007 | www.csstemplateheaven.com */
 
-   <ul>
-    
-    <%if(data[i+1]){
-      data[i+1].forEach(item => { %>
-        <li> <%=item.title %>  </li>
-
-      <%})
-
-    }%>
-      
-      
+  * {margin: 0; padding: 0;}
+  
+  body {
+    background-image: url(images/body.jpg);
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 62.5%;
+  }
+  
+  /*---------------- Main structure --------------*/
+  
+  #container {
+    width: 885px;
+    font-size: 1.2em;
+    background-image: url(images/container.jpg);
+    background-repeat: repeat-y;
+  }
+  
+  #header {
+    background-image: url(images/header.jpg);
+    height: 288px;
+    margin-top: 0px;
+  }
+  
+  #sideheader {
+    background-image: url(images/sideheader.jpg);
+    height: 576px;
+    width: 145px;
+    position: absolute;
+    left: 740px;
+    top: 0px;
+  }
+  
+  #left_column {
+    width: 180px;
+    margin-top: 0px;
+    float: left;
+    background-image: url(images/left_column.jpg);
+    background-repeat: no-repeat;
+    margin-left: 70px!important;
+    margin-left: 35px;
+  }
+  
+  .left_column_boxes {
+    border: 1px dotted #AA8661!important;
+    border: none;
+    padding: 3px;
+    margin-bottom: 20px;
+  }
+  
+  #content {
+    padding-right: 150px;
+    margin-left: 295px;
+  }
+        
+  #footer {
+    padding: 20px;
+    clear: both;
+  }
+        
+  /*-----------TEXT FORMATTING------------- */
+  
+  p {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #814F2C;
+  }
      
-
-    
-   </ul>
-</nav>
-
-  <% } %>
- 
+  p.center {
+    text-align: center;
+    font-size: 0.8em;
+  }
+  
+  h1 {
+    float: right;
+    margin-right: 163px!important;
+    margin-right: 80px;
+    margin-top: 180px;
+    font-size: 44px;
+    color: #55311B;
+  }
+  
+     
+  h3 {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.6em;
+    font-style: italic;
+    color: #926B4A;
+    text-align: center;
+  }
+  
+  h4 {color: #926B4A;
+  margin-bottom: 15px;
+  }
+  
+  
+  
+  
+  
+  dl {
+    font-size: 0.8em;
+    margin-top: 0px;
+  }
+  
+  dt {
+    font-size: 1.2em;
+    margin-bottom: 3px;
+    color: #666600;
+  }
+  
+  dd {
+    margin-bottom: 15px;
+    color: #814F2C;
+  }
+  
+  .news:first-letter {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+  
+  a:link, a:visited, a:active  {color: #666600}
+  a:hover {color: #805D3F}
+  
+  
+  /*-------------- Navigation --------------*/
+  
+  #navcontainer {  
+  }
+  
+  #navcontainer ul {
+    list-style-type: none;
+  }
+  
+  #navcontainer a {
+    display: block;
+    padding: 3px;
+    border-bottom: 1px solid #A47F52;
+    font-weight: bold;
+    height: 1.5em;
+  }
+  
+  #navcontainer a:link, #navlist a:visited {
+    color: #65391E;
+    text-decoration: none;
+    font-style: italic;
+  }
+  
+  #navcontainer a:hover {
+    color: #fff;
+    font-style: normal;
+    background-image: url(images/menu_hover.png)!important;
+    background: none;	
+  }
+  
+  /*------------ Contact form -----------------*/
+  
+  label {
+    font-style: italic;
+  }
+  
+  form.contact_us {
+    width: 170px;
+  }
+  
+  input.fields_contact_us {
+          display: block;
+          width: 170px;
+          background: url(images/menu_hover.png)!important;
+      background: none;
+      border-top: 1px solid #C0935C;
+      border-left: 1px solid #C0935C;
+      border-bottom: 1px solid #D9B17D;
+      border-right: 1px solid #D9B17D;
+      margin-top: 3px;
+        margin-bottom: 3px;
+  }
+  
+  textarea {
+            width: 170px;
+            background: url(images/menu_hover.png)!important;
+        background: none;
+        border-top: 1px solid #C0935C;
+        border-left: 1px solid #C0935C;
+        border-bottom: 1px solid #D9B17D;
+        border-right: 1px solid #D9B17D;
+        display: block;
+            margin-top: 3px;
+  }
+  
+  .submit_button_contact {
+    margin-top: 15px;
+    width: 100%;
+    padding: 2px;
+    background: none;
+    cursor: pointer;
+    color: #926B4A;
+    border: none;
+    font-size: 1.8em;
+    font-weight: bold;
+    font-family: "Times New Roman", Times, serif;
+    font-style: italic;
+  }
+  </style>
+<body>
+<div id="container">
+  <div id="header">
+    <h1>THE BOOK STORE</h1>
+  </div>
+  <div id="sideheader"></div>
+  <div id="left_column">
+    <div class="left_column_boxes">
+      <h4>Navigation</h4>
+      <div id="navcontainer">
+        <ul id="navlist">
+          <li id="active"><a href="#" id="current">Home</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="#">Webshop</a></li>
+          <li><a href="#">About us </a></li>
+          <li><a href="#">Site map </a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="left_column_boxes">
+      <h4>News</h4>
+      <dl>
+        <dt class="news">This is a definiton list</dt>
+        <dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed quam.  Nullam gravida aliquet odio. Phasellus ullamcorper tincidunt orci.  Praesent vel purus. Sed porttitor. Proin porttitor suscipit urna. Morbi  rhoncus posuere orci.</dd>
+        <dt class="news">Lists are cool</dt>
+        <dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed quam.  Nullam gravida aliquet odio. Phasellus ullamcorper tincidunt orci.  Praesent vel purus. Sed porttitor. Proin porttitor suscipit urna. Morbi  rhoncus posuere orci.</dd>
+      </dl>
+    </div>
+    <div class="left_column_boxes">
+      <h4>Contact us</h4>
+      <form id="form1" method="post" class="contact_us" action="#">
+        <p>
+          <label>Name
+          <input type="text" class="fields_contact_us" name="textfield" />
+          </label>
+          <label>E-mail
+          <input type="text" class="fields_contact_us" name="textfield1" />
+          </label>
+          <label> Your question:
+          <textarea name="textarea" cols="" rows=""></textarea>
+          </label>
+          <label>
+          <input type="submit" class="submit_button_contact" name="Submit1" value="Submit" />
+          </label>
+        </p>
+      </form>
+    </div>
+    <p class="center">Created by Dieter Schneider 2007 <a href="http://www.csstemplateheaven.com">www.csstemplateheaven.com</a></p>
+  </div>
+  <div id="content">
+    <h3><a href="http://localhost:4000/home?file=flag.txt">Nullam nisl ante</a></h3>
+    <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed quam.  Nullam gravida aliquet odio. Phasellus ullamcorper tincidunt orci.  Praesent vel purus. Sed porttitor. Proin porttitor suscipit urna. Morbi  rhoncus posuere orci. In pulvinar condimentum ligula. Aenean imperdiet  pulvinar urna. Morbi dapibus pede vel velit. Duis a nisl. Proin  consequat. Proin lacus purus, auctor ac, semper in, posuere non, leo.  Nullam nisl ante, pulvinar vel, aliquam ut, pulvinar sit amet, turpis.  Aliquam suscipit dui eu turpis. Nullam tellus. Duis at erat id sem  vestibulum egestas. Aliquam varius nisl vel lectus. Aliquam at purus  ullamcorper massa lobortis placerat. Aliquam eget mauris sodales lectus  vestibulum vulputate. </p>
+    <h3>Sed mollis</h3>
+    <p>Morbi lorem. Vivamus leo diam, bibendum a, interdum quis, volutpat  at, elit. Integer sit amet est at purus rhoncus facilisis. Cum sociis  natoque penatibus et magnis dis parturient montes, nascetur ridiculus  mus. Aenean eu enim vitae ante ullamcorper faucibus. Etiam elementum  lobortis odio. Donec lacus purus, interdum sit amet, convallis quis,  porta sit amet, elit. Donec ac odio quis ipsum convallis ultrices. Nam  hendrerit tincidunt est. Sed ipsum. Proin rutrum ante eget mi. Morbi id  ante. Integer et risus in nisl iaculis ornare. Sed mollis. Cras nisi  elit, rutrum eget, sagittis ac, semper non, sapien. Lorem ipsum dolor  sit amet, consectetuer adipiscing elit. </p>
+    <h3>Aliquam ut  mauris</h3>
+    <p>Phasellus mollis. Pellentesque nibh metus, hendrerit ac, porttitor  a, pulvinar vel, turpis. Aliquam mattis auctor lectus. Proin eleifend  varius neque. Maecenas nulla. Pellentesque habitant morbi tristique  senectus et netus et malesuada fames ac turpis egestas. Morbi tellus.  Sed libero enim, tempus faucibus, egestas eu, sodales non, tortor.  Aenean eget nibh dictum dui sollicitudin consectetuer. Aliquam ut  mauris non quam facilisis faucibus. Morbi eu est. Vestibulum enim  lorem, tempus ornare, sodales nec, imperdiet ac, augue. Vestibulum nunc  felis, placerat eu, euismod at, pellentesque ut, lacus. Aliquam tempor  consequat enim. Sed ut dolor. Sed vestibulum metus vitae justo. Nulla  libero. Integer sit amet diam ut orci rutrum euismod. Praesent suscipit  augue in justo. Vestibulum diam. </p>
+    <h3>Aenean purus pede</h3>
+    <p>Vivamus diam orci, bibendum eu, venenatis a, gravida et, nisl. Donec  felis tortor, rhoncus eu, convallis ac, mattis id, est. Donec commodo,  dui vel eleifend varius, lacus nunc suscipit risus, eget bibendum nunc  velit lobortis sapien. Nam sodales volutpat nibh. Cras et justo.  Praesent pede. In sed eros cursus arcu tristique congue. Nulla iaculis  ante sit amet sapien auctor tincidunt. Aliquam sit amet libero. Aliquam  mauris tellus, gravida nec, nonummy vel, tincidunt hendrerit, mi. Etiam  cursus mi et turpis. Phasellus et mi in dolor feugiat feugiat.  Vestibulum ante ipsum primis in faucibus orci luctus et ultrices  posuere cubilia Curae; Fusce commodo. </p>
+    <h3>Vivamus diam orci</h3>
+    <p>Aenean purus pede, tempor ut, iaculis ac, tincidunt interdum, urna.  Pellentesque quis mauris. Morbi porttitor blandit nisl. Suspendisse  potenti. Cras sem. Maecenas sit amet eros a augue fringilla posuere. Ut  bibendum ultricies lorem. Donec interdum. In interdum ullamcorper nisl.  Mauris tortor pede, accumsan a, tempus et, fermentum et, lectus. In  congue ligula ut odio. Sed adipiscing pharetra quam. </p>
+  </div>
+  <div id="content"><%= data %></div>
+  <div id="footer"></div>
 </div>
-
-
 </body>
 </html>

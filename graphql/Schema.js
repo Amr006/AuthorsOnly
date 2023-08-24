@@ -1,53 +1,28 @@
 const typeDefs  = `#graphql
-  type Game {
-    id: ID!
-    title: String!
-    platform: [String!]!
-    reviews: [Review!]
-  }
-
-  type Review {
-    id: ID!
-    rating: Int!
-    content: String!
-    author: Author!
-    game: Game!
-
-  }
 
   type Author{
-    id: ID!
     name: String!
-    verified: Boolean!
-    reviews: [Review!]
+    email: String!
+    password: String!
   }
 
   type Query {
-    games: [Game]
-    game(id: ID!): Game
-    reviews: [Review]
-    review(id: ID!): Review
     authors: [Author]
     author(id: ID!): Author
   }
 
   type Mutation {
-    addGame(game: AddGameInput!): Game 
-    deleteGame(id: ID!): [Game]
-    updateGame(id: ID! , edits: EditGameInput): Game
+    addAuthor(author: addAuthorInput!): [Author]
   }
+
+  input addAuthorInput {
+    name: String!
+    email: String!
+    password: String!
+  }
+
   
 
-  input AddGameInput {
-    title: String!
-    platform: [String!]!
-  }
-
-  input EditGameInput 
-  {
-    title: String 
-    platform: [String!]
-  }
 `
 
 module.exports = typeDefs

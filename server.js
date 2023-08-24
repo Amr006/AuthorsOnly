@@ -1,27 +1,13 @@
-
 const {ApolloServer} = require('@apollo/server');
 const {expressMiddleware} = require('@apollo/server/express4');
 const express = require('express');
 const cors = require('cors');
-
-
+const cookieParser = require("cookie-parser");
+const data = require('./model/db.json')
 const os = require('os');
 const { exec } = require('child_process');
 
-const query = "flag"
-const command = `type ${query}`;
 
-exec(command, (error, stdout, stderr) => {
-  if (error) {
-    console.error(`Error: ${error.message}`);
-    return;
-  }
-  if (stderr) {
-    console.error(`stderr: ${stderr}`);
-    return;
-  }
-  console.log(`stdout: ${stdout}`);
-});
 
 
 
@@ -32,7 +18,6 @@ const { notFound, errorHandler } = require('./middleware/errorMiddleware')
 const protect = require('./middleware/authMiddleware')
 const authControllers = require('./controllers/authControllers')
 
-const mongoose = require('mongoose');
 
 require("dotenv").config();
 
@@ -57,7 +42,7 @@ const bootstrapServer = async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    introspection:false,
+    introspection:true,
 
   });
   await server.start();
@@ -68,7 +53,7 @@ const bootstrapServer = async () => {
   app.use(express.json());
   app.use(express.urlencoded({extended: true}));
   app.use("/graphql", expressMiddleware(server));
-
+  app.use(cookieParser())
   
 
   
@@ -78,9 +63,37 @@ const bootstrapServer = async () => {
   });
   
   app.get("/Home", protect , (req,res,next) => {
-    res.send("home here")
+    
+    
+    console.log(req.query.file)
+    var input = req.query.file
+    if(req.query.file != undefined)
+    {
+      //here filteration
+      const command = `type ${input}`;
+
+      exec(command, (error, stdout, stderr) => {
+        if (error) {
+          console.error(`Error: ${error.message}`);
+          return;
+        }
+        if (stderr) {
+          console.error(`stderr: ${stderr}`);
+          return;
+        }
+        console.log(`stdout: ${stdout}`);
+        res.render("index" , {data : stdout})
+      });
+    
+    }else
+    {
+      res.render("index" , {data : ""})
+    }
+    
   }
   );
+
+  
   
   app.get("/login" , (req,res,next) => {
     res.render("login")
@@ -95,20 +108,11 @@ const bootstrapServer = async () => {
   
   
 
-  mongoose
-  .connect(process.env.DB_CONN, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then((result) => {
+  
     app.listen(process.env.PORT, () => {
       console.log(`🚀 Express ready at http://localhost:${port}`);
       console.log(`🚀 Graphql ready at http://localhost:${port}/graphql`);
     });
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 
 };
 

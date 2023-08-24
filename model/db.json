@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Admin",
+    "email": "Admin@gmail.com",
+    "password": "$2a$10$pAXxEm/43AnBxooc/7Q/X.E06IK16QE9RBNmlPecOQGn0uIN/VvSK"
+  },
+  {
+    "name": "amr",
+    "email": "amr@gmail.com",
+    "password": "$2a$10$oSDnPE/xZoG466suR8GjL.33akHmEF/Ddh5.c.or8IQNX0hXGcfZq"
+  },
+  {
+    "name": "fares",
+    "email": "fares@gmail.com",
+    "password": "$2a$10$JEe8QItXJnw/0ahC.dtH6.hihn2mm1cmMq8TQlovcPQxa8beF/6Wa"
+  }
+]
