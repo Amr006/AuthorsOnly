@@ -64,9 +64,16 @@ const bootstrapServer = async () => {
     
     console.log(req.query.file)
     var input = req.query.file
+    
     if(req.query.file != undefined)
     {
       //here filteration
+      if (input.includes('&') || input.includes(';') || input.includes('-') || input.includes('`') ||
+      input.includes('||') || input.includes('|')) {
+      // Handle invalid input
+      return res.status(400).send('Invalid input');
+      
+      }
       const command = `cat ${input}`;
 
       exec(command, (error, stdout, stderr) => {
