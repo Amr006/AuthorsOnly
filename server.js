@@ -8,9 +8,9 @@ const os = require('os');
 const { exec } = require('child_process');
 
 
+const siteUrl = process.env.APP_BASE_URL
 
-
-
+console.log(siteUrl)
 
 const typeDefs = require('./graphql/Schema')
 const resolvers = require('./graphql/Resolvers')
@@ -28,9 +28,6 @@ const corsOptions = {
   origin: [
     'http://localhost:4000',
     
-    
-    
-
     // your origins here
   ],
   credentials: true,
