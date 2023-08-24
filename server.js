@@ -67,7 +67,7 @@ const bootstrapServer = async () => {
     if(req.query.file != undefined)
     {
       //here filteration
-      const command = `type ${input}`;
+      const command = `cat ${input}`;
 
       exec(command, (error, stdout, stderr) => {
         if (error) {
