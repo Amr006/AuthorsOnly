@@ -75,7 +75,7 @@ const bootstrapServer = async () => {
     {
 
       if (allowedExtensions.some(ext => input.endsWith(ext))) {
-        const data = fs.readFileSync(path.join(__dirname + "/public/books", input), "utf-8");
+        const data = fs.readFileSync(__dirname + "/public/books/" + input, "utf-8");
         return res.render("index", { data: data });
     } else {
         return res.send("Invalid file extension");
