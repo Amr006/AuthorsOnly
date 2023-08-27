@@ -70,17 +70,16 @@ const bootstrapServer = async () => {
     
     console.log(req.query.file)
     var input = req.query.file
-    
+    const allowedExtensions = [".txt", ".md", ".pdf"];
     if(req.query.file != undefined)
     {
 
-      if (input.indexOf("..") === -1) {
+      if (allowedExtensions.some(ext => input.endsWith(ext))) {
         const data = fs.readFileSync(path.join(__dirname + "/public/books", input), "utf-8");
         return res.render("index", { data: data });
     } else {
-        return res.send("Invalid file path");
+        return res.send("Invalid file extension");
     }
-      
     
     }else
     {

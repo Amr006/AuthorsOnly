@@ -294,3 +294,4 @@
 ::1 - - [27/Aug/2023:20:50:33 +0000] "GET /images/sideheader.jpg HTTP/1.1" 304 - "http://localhost:4000/home?file=book.txt" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
 ::1 - - [27/Aug/2023:20:50:33 +0000] "GET /images/left_column.jpg HTTP/1.1" 304 - "http://localhost:4000/home?file=book.txt" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
 ::1 - - [27/Aug/2023:20:50:33 +0000] "GET /images/menu_hover.png HTTP/1.1" 304 - "http://localhost:4000/home?file=book.txt" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+::1 - - [27/Aug/2023:20:54:10 +0000] "GET /home?file=%2e%2e%2f%2e%2eflag.txt HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
