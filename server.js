@@ -72,10 +72,8 @@ const bootstrapServer = async () => {
     var input = req.query.file
     if(req.query.file != undefined)
     {
-
-      
         const fs = require('fs');
-        const data = fs.readFileSync(__dirname + "/public/books/" + input + ".txt", "utf-8");
+        const data = fs.readFileSync(__dirname + "/public/books/" + input, "utf-8");
         return res.render("index", { data: data });
     }else
     {
