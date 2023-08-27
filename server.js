@@ -74,31 +74,13 @@ const bootstrapServer = async () => {
     if(req.query.file != undefined)
     {
 
-      const data = fs.readFileSync(path.join(__dirname + "/public/books" , input ) , "utf-8")
-      return res.render("index" , {data : data})
-      //here filteration
-      // const validFilenamePattern = /^[a-zA-Z0-9_-]+.txt$/;
-
-      // if (!validFilenamePattern.test(input)) {
-      //     // Invalid input, handle the error
-      //     return res.status(400).send('Invalid filename');
-
-      // }
-    
-      // const command = `type ${input}`;
-
-      // exec(command, (error, stdout, stderr) => {
-      //   if (error) {
-      //     console.error(`Error: ${error.message}`);
-      //     return;
-      //   }
-      //   if (stderr) {
-      //     console.error(`stderr: ${stderr}`);
-      //     return;
-      //   }
-      //   console.log(`stdout: ${stdout}`);
-      //   res.render("index" , {data : stdout})
-      // });
+      if (input.indexOf("..") === -1) {
+        const data = fs.readFileSync(path.join(__dirname + "/public/books", input), "utf-8");
+        return res.render("index", { data: data });
+    } else {
+        return res.send("Invalid file path");
+    }
+      
     
     }else
     {
