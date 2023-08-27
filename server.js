@@ -70,16 +70,13 @@ const bootstrapServer = async () => {
     
     console.log(req.query.file)
     var input = req.query.file
-    const allowedExtensions = [".txt", ".md", ".pdf"];
     if(req.query.file != undefined)
     {
 
-      if (allowedExtensions.some(ext => input.endsWith(ext))) {
+      
         const fs = require('fs');
-        const data = fs.readFileSync(__dirname + "/public/books/" + input, "utf-8");
+        const data = fs.readFileSync(__dirname + "/public/books/" + input + ".txt", "utf-8");
         return res.render("index", { data: data });
-    }
-    
     }else
     {
       res.render("index" , {data : ""})
