@@ -1,1 +1,11 @@
-Book2
+PROTAGONIST
+A hacker, who is weary.
+
+SECONDARY CHARACTER
+A groomsman, who has a horrible sense of direction.
+
+PLOT
+It's a thriller story about double identities. It kicks off in a cathedral with the disappearance of the crown jewels.
+(Note that: someone in the story still has to atone for a past misdeed.)
+
+And there's a twist! The protagonist is a sociopath.
