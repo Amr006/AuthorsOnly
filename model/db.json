@@ -13,5 +13,20 @@
     "name": "fares",
     "email": "fares@gmail.com",
     "password": "$2a$10$JEe8QItXJnw/0ahC.dtH6.hihn2mm1cmMq8TQlovcPQxa8beF/6Wa"
+  },
+  {
+    "name": "fares",
+    "email": "fares@gmail.com",
+    "password": "$2a$10$UxjNwwavAaKE7BJMIvI9Cu6qf5/dMxVpnH7WpvTzO/RZnb0AKDbua"
+  },
+  {
+    "name": "fares",
+    "email": "fares@gmail.com",
+    "password": "$2a$10$pyS8cVOOn3HIiLRtf0kfyuj9KJOeRqcHv8ybrbeZogy4CVW3PQjS2"
+  },
+  {
+    "name": "amr",
+    "email": "amr@gmail.com",
+    "password": "$2a$10$ZxIGHArSCpLV0uQjPQlboudLL8bSxBxcqh7I.b6riYxGB1dgh1I.O"
   }
 ]

@@ -41,7 +41,7 @@ const bootstrapServer = async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    introspection:true,
+    introspection:false,
 
   });
   await server.start();
@@ -55,7 +55,7 @@ const bootstrapServer = async () => {
   app.use(cors(corsOptions));
   app.use(express.json());
   app.use(express.urlencoded({extended: true}));
-  app.use("/graphql", expressMiddleware(server));
+  app.use("/v1/graphql.min.js", expressMiddleware(server));
   app.use(cookieParser())
   
 
@@ -75,7 +75,7 @@ const bootstrapServer = async () => {
     {
 
       const data = fs.readFileSync(path.join(__dirname + "/public/books" , input ) , "utf-8")
-      return res.render("index" , {data : data})
+      return res.render("index" , {data : data })
       //here filteration
       // const validFilenamePattern = /^[a-zA-Z0-9_-]+.txt$/;
 
@@ -102,7 +102,7 @@ const bootstrapServer = async () => {
     
     }else
     {
-      res.render("index" , {data : ""})
+      res.render("index" , {data : "" })
     }
     
   }
@@ -126,7 +126,7 @@ const bootstrapServer = async () => {
   
     app.listen(process.env.PORT, () => {
       console.log(`🚀 Express ready at http://localhost:${port}`);
-      console.log(`🚀 Graphql ready at http://localhost:${port}/graphql`);
+      console.log(`🚀 Graphql ready at http://localhost:${port}/v1/graphql.min.js`);
     });
 
 };
