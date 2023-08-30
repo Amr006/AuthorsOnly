@@ -70,7 +70,6 @@ const bootstrapServer = async () => {
     
     console.log(req.query.file)
     var input = req.query.file
-    
     if(req.query.file != undefined)
     {
 
