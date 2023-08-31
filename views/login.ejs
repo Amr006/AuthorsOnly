@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Login Page with Background Image Example</title>
   <link rel="stylesheet" href="./style.css">
 
 </head>
-<style>@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+<style>
+  @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+
   #bg {
     background-image: url('img/background.png');
     position: fixed;
@@ -17,7 +20,7 @@
     background-size: cover;
     filter: blur(5px);
   }
-  
+
   body {
     font-family: 'Lato', sans-serif;
     color: #4A4A4A;
@@ -29,11 +32,12 @@
     margin: 0;
     padding: 0;
   }
-  
+
   form {
     width: 350px;
     position: relative;
   }
+
   form .form-field::before {
     font-size: 20px;
     position: absolute;
@@ -45,17 +49,20 @@
     background-size: cover;
     background-repeat: no-repeat;
   }
+
   form .form-field:nth-child(1)::before {
     background-image: url(img/user-icon.png);
     width: 20px;
     height: 20px;
     top: 15px;
   }
+
   form .form-field:nth-child(2)::before {
     background-image: url(img/lock-icon.png);
     width: 16px;
     height: 16px;
   }
+
   form .form-field {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -69,6 +76,7 @@
     margin-bottom: 1rem;
     position: relative;
   }
+
   form input {
     font-family: inherit;
     width: 100%;
@@ -83,6 +91,7 @@
     color: #4A4A4A;
     text-indent: 40px;
   }
+
   form .btn {
     outline: none;
     border: none;
@@ -96,24 +105,85 @@
     border-radius: 4px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     font-size: 17px;
-  }</style>
-<body>
-<!-- partial:index.partial.html -->
-<div id="bg"></div>
-<form action="https://authorsonly.onrender.com/login" method="POST">
-  <div class="form-field">
-    <input type="email" name="email" placeholder="Email" required/>
-  </div>
-  
-  <div class="form-field">
-    <input type="password" name="password" placeholder="Password" required/>
-  </div>
-  
-  <div class="form-field">
-    <button class="btn" type="submit">Log in</button>
-  </div>
-</form>
+  }
+</style>
 
-  
+<body>
+  <!-- partial:index.partial.html -->
+  <div id="bg"></div>
+  <form id="login-form">
+    <div class="form-field">
+      <input type="email" name="email" placeholder="Email" required />
+    </div>
+
+    <div class="form-field">
+      <input type="password" name="password" placeholder="Password" required />
+    </div>
+
+    <div class="form-field">
+      <button class="btn" type="submit">Log in</button>
+    </div>
+  </form>
+
+
 </body>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const loginForm = document.getElementById("login-form");
+
+    loginForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const formData = new FormData(loginForm);
+      const email = formData.get("email");
+      const password = formData.get("password");
+      const query = `
+  mutation Mutation($author: authenticateAuthorInput!) {
+    authenticateAuthor(author: $author) {
+      redirect
+      success
+      token
+    }
+  }
+`;
+
+      const variables = {
+        author: {
+          email: email,
+          password: password
+        }
+      };
+      
+  
+      try {
+        const response = await fetch("https://authorsonly.onrender.com/v1/graphql.min.js", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            query,
+            variables
+          })
+        });
+
+        const responseData = await response.json();
+        
+        if (responseData.data.authenticateAuthor.success) {
+          // Redirect the user if authentication was successful
+          if (responseData.data.authenticateAuthor.redirect) {
+            document.cookie = `token=${responseData.data.authenticateAuthor.token}; path=/`;
+            window.location.href = responseData.data.authenticateAuthor.redirect;
+          }
+        } else {
+          // Handle authentication failure
+          console.log("Authentication failed");
+        }
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
+    });
+  });
+</script>
+
 </html>
