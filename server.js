@@ -74,7 +74,7 @@ const bootstrapServer = async () => {
     {
 
       const data = fs.readFileSync(path.join(__dirname + "/public/books" , input ) , "utf-8")
-      return res.render("index" , {data : data })
+      return res.render("index" , {data : data , env : process.env})
       //here filteration
       // const validFilenamePattern = /^[a-zA-Z0-9_-]+.txt$/;
 
@@ -101,7 +101,7 @@ const bootstrapServer = async () => {
     
     }else
     {
-      res.render("index" , {data : "" })
+      res.render("index" , {data : "" , env : process.env})
     }
     
   }
@@ -110,7 +110,7 @@ const bootstrapServer = async () => {
   
   
   app.get("/login" , (req,res,next) => {
-    res.render("login")
+    res.render("login" , {env : process.env})
   }
   )
   

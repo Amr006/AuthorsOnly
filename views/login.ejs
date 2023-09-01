@@ -156,7 +156,7 @@
       
   
       try {
-        const response = await fetch("https://authorsonly.onrender.com/v1/graphql.min.js", {
+        const response = await fetch(`<%=env.APP_BASE_URL%>/v1/graphql.min.js`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
