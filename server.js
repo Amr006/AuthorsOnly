@@ -41,7 +41,7 @@ const bootstrapServer = async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    introspection:true,
+    introspection:false,
 
   });
   await server.start();

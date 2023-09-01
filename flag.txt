@@ -1,1 +1,1 @@
-FLAG{HELLO}
+HTB{Ch4pt3r_4nd_V3rs3_S3cr3tsZ}
