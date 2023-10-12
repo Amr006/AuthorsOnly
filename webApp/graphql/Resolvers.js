@@ -16,7 +16,7 @@ const resolvers = {
       return controllers.register(args)
     },
     async authenticateAuthor(_,args){
-      console.log("amrrrrrrrr")
+      
       return controllers.login(args)
         .then(response => {
           if (response.success) {

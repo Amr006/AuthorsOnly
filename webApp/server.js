@@ -3,16 +3,11 @@ const {expressMiddleware} = require('@apollo/server/express4');
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require("cookie-parser");
-const data = require('./model/db.json')
-const os = require('os');
-const { exec } = require('child_process');
 const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
 
-const siteUrl = process.env.APP_BASE_URL
 
-console.log(siteUrl)
 
 const typeDefs = require('./graphql/Schema')
 const resolvers = require('./graphql/Resolvers')
@@ -75,29 +70,6 @@ const bootstrapServer = async () => {
 
       const data = fs.readFileSync(path.join(__dirname + "/public/books" , input ) , "utf-8")
       return res.render("index" , {data : data , env : process.env})
-      //here filteration
-      // const validFilenamePattern = /^[a-zA-Z0-9_-]+.txt$/;
-
-      // if (!validFilenamePattern.test(input)) {
-      //     // Invalid input, handle the error
-      //     return res.status(400).send('Invalid filename');
-
-      // }
-    
-      // const command = `type ${input}`;
-
-      // exec(command, (error, stdout, stderr) => {
-      //   if (error) {
-      //     console.error(`Error: ${error.message}`);
-      //     return;
-      //   }
-      //   if (stderr) {
-      //     console.error(`stderr: ${stderr}`);
-      //     return;
-      //   }
-      //   console.log(`stdout: ${stdout}`);
-      //   res.render("index" , {data : stdout})
-      // });
     
     }else
     {
