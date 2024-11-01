@@ -1,0 +1,16 @@
+# Use official Node 20.10.0 image as a base
+FROM node:20.10.0
+
+# Create and set the working directory in the container
+WORKDIR /app
+
+COPY . .
+
+# Install dependencies
+RUN npm install
+
+# Expose the port your app runs on (replace 3000 with your actual app port if different)
+EXPOSE 3000
+
+# Start the application
+CMD ["npm", "run", "start"]
